@@ -6,9 +6,11 @@ import com.sun.net.httpserver.*;
 
 public class Journal {
     public static String root = "/journal/";
+    public static int port = 3006;
 
     public static void main(String[] args) throws Exception {
-        HttpServer server = HttpServer.create(new InetSocketAddress(3003), 0);
+        HttpServer server = HttpServer.create(new InetSocketAddress(port), 0);
+
         server.createContext("/css/", new FileServer(root + "css/"));
         server.createContext("/js/", new FileServer(root + "js/"));
         server.createContext("/fonts/", new FileServer(root + "fonts/"));
@@ -17,7 +19,7 @@ public class Journal {
 
         try {
             server.start();
-            System.out.println("ONLINE\nURL: http://journal.harveycoombs.com/\nPORT: 3003");
+            System.out.println("ONLINE\nURL: http://journal.harveycoombs.com/\nPORT: " + port);
         } catch (Exception ex) {
             System.out.println("ERROR: " + ex.getMessage());
         }
